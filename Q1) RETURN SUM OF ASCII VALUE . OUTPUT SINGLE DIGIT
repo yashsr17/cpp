@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+int main()
+{
+    char inp1[15],inp2[15];
+    cin>>inp1;
+    cin>>inp2;
+    int sinp1 = strlen(inp1);
+    int sinp2 = strlen(inp2);
+    for(int j=0;inp2[j]!='\0';j++){
+        int c=0;
+        for(int i=0;inp1[i]!='\0';i++){
+            if(inp1[i]==inp2[j] && inp1[i]!='0'){
+                inp1[i]='0';
+                c=1;
+            }
+        }
+        if(c==1){
+            inp2[j]='0';
+        }
+    }
+    int sum=0;
+    for(int i=0;i<sinp1;i++){
+        if(inp1[i]!='0'){
+            sum += (int)inp1[i];
+        }
+    }
+    for(int i=0;i<sinp2;i++){
+        if(inp2[i]!='0'){
+            sum += (int)inp2[i];
+        }
+    }
+    again:
+    int sum1=0;
+    while(sum>0){
+        int t = sum%10;
+        sum1+=t;
+        sum=sum/10;
+    }
+    if(sum1>9){
+        sum=sum1;
+        goto again;
+    }
+    cout<<sum1;
+    return 0;
+}
